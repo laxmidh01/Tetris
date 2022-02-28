@@ -9,7 +9,7 @@ public interface IGrid<E> extends Iterable<CoordinateItem<E>> {
     int getCols();
 
     /**
-     * Sets the value of a postion in the grid. A subsequent call to {@link #get}
+     * Sets the value of a position in the grid. A subsequent call to {@link #get}
      * with an equal coordinate as argument will return the value which was set. The
      * method will overwrite any previous value that was stored at the location.
      * 
@@ -37,4 +37,6 @@ public interface IGrid<E> extends Iterable<CoordinateItem<E>> {
      * @return true if the coordinate is within bounds, false otherwise
      */
     boolean coordinateIsOnGrid(Coordinate coordinate);
+
+    boolean equals(Object o);
 }

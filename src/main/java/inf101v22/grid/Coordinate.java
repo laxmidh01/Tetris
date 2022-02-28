@@ -7,6 +7,12 @@ public class Coordinate implements IGrid{
     int row;
     int col;
 
+    public Coordinate(int i, int i1) {
+    }
+
+    public Coordinate() {
+    }
+
 
     @Override
     public final int getRows() {
@@ -33,10 +39,6 @@ public class Coordinate implements IGrid{
         return false;
     }
 
-    @Override
-    public boolean equals() {
-        return false;
-    }
 
     @Override
     public Iterator iterator() {

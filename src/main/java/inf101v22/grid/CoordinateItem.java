@@ -3,9 +3,17 @@ package inf101v22.grid;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class CoordinateItem <E> implements IGrid{
+public class CoordinateItem<E> implements IGrid{
+    public Coordinate coordinate;
+    public String item;
+    
+
     int row;
     int col;
+
+    public CoordinateItem(Coordinate coordinate, E item) {
+    }
+
 
     @Override
     public int getRows() {
@@ -33,11 +41,6 @@ public class CoordinateItem <E> implements IGrid{
     }
 
     @Override
-    public boolean equals() {
-        return false;
-    }
-
-    @Override
     public Iterator iterator() {
         return null;
     }
@@ -47,7 +50,7 @@ public class CoordinateItem <E> implements IGrid{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Coordinate that = (Coordinate) o;
+        CoordinateItem<?> that = (CoordinateItem<?>) o;
         return row == that.row && col == that.col;
     }
 
@@ -58,10 +61,9 @@ public class CoordinateItem <E> implements IGrid{
 
     @Override
     public String toString() {
-        return "Coordinate{" +
+        return "CoordinateItem{" +
                 "row=" + row +
                 ", col=" + col +
                 '}';
     }
-
 }

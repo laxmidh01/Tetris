@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Test;
  * Testing the class Grid
  */
 public class GridTest {
-    /* TODO: Uncomment these tests and make them pass by creating a class Grid which implements IGrid
+    // TODO: Uncomment these tests and make them pass by creating a class Grid which implements IGrid
 
     @Test
     void gridTestGetRowsAndCols() {
-        IGrid<Integer> grid = new Grid<>(3, 2);
+        IGrid<Integer> grid = new Grid(3, 2);
         assertEquals(3, grid.getRows());
         assertEquals(2, grid.getCols());
     }
@@ -26,7 +26,7 @@ public class GridTest {
     @Test
     void gridSanityTest() {
         String defaultValue = "x";
-        IGrid<String> grid = new Grid<>(3, 2, defaultValue);
+        IGrid<String> grid = new Grid(3, 2);
 
         assertEquals(3, grid.getRows());
         assertEquals(2, grid.getCols());
@@ -45,7 +45,7 @@ public class GridTest {
     @Test
     void gridCanHoldNull() {
         String defaultValue = "x";
-        IGrid<String> grid = new Grid<>(3, 2, defaultValue);
+        IGrid<String> grid = new Grid(3, 2);
 
         assertEquals("x", grid.get(new Coordinate(0, 0)));
         assertEquals("x", grid.get(new Coordinate(2, 1)));
@@ -60,7 +60,7 @@ public class GridTest {
 
     @Test
     void gridNullsInDefaultConstructor() {
-        IGrid<String> grid = new Grid<>(3, 2);
+        IGrid<String> grid = new Grid(3, 2);
 
         assertEquals(null, grid.get(new Coordinate(0, 0)));
         assertEquals(null, grid.get(new Coordinate(2, 1)));
@@ -75,7 +75,7 @@ public class GridTest {
 
     @Test
     void coordinateIsOnGridTest() {
-        IGrid<Double> grid = new Grid<>(3, 2, 0.9);
+        IGrid<Double> grid = new Grid(3, 2);
 
         assertTrue(grid.coordinateIsOnGrid(new Coordinate(2, 1)));
         assertFalse(grid.coordinateIsOnGrid(new Coordinate(3, 1)));
@@ -88,7 +88,7 @@ public class GridTest {
 
     @Test
     void throwsExceptionWheenCoordinateOffGrid() {
-        IGrid<String> grid = new Grid<>(3, 2, "x");
+        IGrid<String> grid = new Grid(3, 2);
 
         try {
             @SuppressWarnings("unused")
@@ -101,7 +101,7 @@ public class GridTest {
 
     @Test
     void testIterator() {
-        IGrid<String> grid = new Grid<>(3, 2, "x");
+        IGrid<String> grid = new Grid(3, 2);
         grid.set(new Coordinate(0, 0), "a");
         grid.set(new Coordinate(1, 1), "b");
         grid.set(new Coordinate(2, 1), "c");
@@ -117,5 +117,4 @@ public class GridTest {
         assertTrue(items.contains(new CoordinateItem<String>(new Coordinate(2, 1), "c")));
         assertTrue(items.contains(new CoordinateItem<String>(new Coordinate(0, 1), "x")));
     }
-    */
 }
