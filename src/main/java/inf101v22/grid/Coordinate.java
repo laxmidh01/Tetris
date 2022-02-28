@@ -34,6 +34,11 @@ public class Coordinate implements IGrid{
     }
 
     @Override
+    public boolean equals() {
+        return false;
+    }
+
+    @Override
     public Iterator iterator() {
         return null;
     }
@@ -51,11 +56,6 @@ public class Coordinate implements IGrid{
     @Override
     public int hashCode() {
         return Objects.hash(row, col);
-    }
-
-    @Override
-    public boolean equals() {
-        return false;
     }
 
     @Override
