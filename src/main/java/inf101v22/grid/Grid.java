@@ -2,19 +2,25 @@ package inf101v22.grid;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 
-public class Grid implements IGrid{
+public class Grid<E> implements IGrid<E>{
     int row;
     int col;
+    E[][] list;
+    E v;
 
-    Coordinate coordinate = new Coordinate();
+    Coordinate coordinate = new Coordinate(row, col);
     //Iterator iterator = new Iterator();
-    ArrayList<CoordinateItem> coordinateItems = new ArrayList<>();
+    ArrayList<E> coordinateItems = new ArrayList<>();
 
-    public Grid(int i, int i1) {
+    public Grid(int row, int col, E defaultValue) {
+        this.row = row;
+        this.col = col;
+        this.v = defaultValue;
+
     }
-    public Grid(int i, int i1, double v) {
+    public Grid(int row, int col) {
+        this(row, col, (E) "x");
     }
 
 
@@ -40,17 +46,17 @@ public class Grid implements IGrid{
     }
 
     @Override
-    public Object get(Coordinate coordinate) {
+    public E get(Coordinate coordinate) {
         if(!coordinateIsOnGrid(coordinate)){
             throw new IndexOutOfBoundsException("not");
         }
-        return coordinate;
+        return null;
     }
 
 
     @Override
     public boolean coordinateIsOnGrid(Coordinate coordinate) {
-        if((row >= 0 || row < getRows()) && (col >= 0 || col < getCols())){
+        if((row >= 0 || row < getRows()) && (col > 0 || col < getCols())){
             return true;
         }
         return false;
@@ -67,8 +73,10 @@ public class Grid implements IGrid{
     @Override
     public Iterator iterator() {
         //ArrayList<CoordinateItem> coordinateItems = new ArrayList<>();
-        Iterator<CoordinateItem> iterator = coordinateItems.iterator();
+        Iterator<E> iterator = (Iterator<E>) coordinateItems.iterator();
+        //for(E element : coordinateItems){
+        //}
 
-        return iterator;
+        return coordinateItems.iterator();
     }
 }

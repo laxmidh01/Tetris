@@ -1,26 +1,27 @@
 package inf101v22.grid;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class Coordinate implements IGrid{
-    int row;
-    int col;
+public class Coordinate<E> implements IGrid{
+    public final int row;
+    public final int col;
 
-    public Coordinate(int i, int i1) {
-    }
+    public Coordinate(int row, int col) {
+        this.row = row;
+        this.col = col;
 
-    public Coordinate() {
     }
 
 
     @Override
-    public final int getRows() {
+    public int getRows() {
         return row;
     }
 
     @Override
-    public final int getCols() {
+    public int getCols() {
         return col;
     }
 
@@ -62,9 +63,9 @@ public class Coordinate implements IGrid{
 
     @Override
     public String toString() {
-        return "Coordinate{" +
-                "row=" + row +
-                ", col=" + col +
-                '}';
+        return "{ " +
+                "row=" + "'" + row + "'" +
+                ", col=" + "'" + col + "'" +
+                " }";
     }
 }

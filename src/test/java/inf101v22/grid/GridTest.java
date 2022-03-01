@@ -26,7 +26,7 @@ public class GridTest {
     @Test
     void gridSanityTest() {
         String defaultValue = "x";
-        IGrid<String> grid = new Grid(3, 2);
+        IGrid<String> grid = new Grid(3, 2, defaultValue);
 
         assertEquals(3, grid.getRows());
         assertEquals(2, grid.getCols());
@@ -45,7 +45,7 @@ public class GridTest {
     @Test
     void gridCanHoldNull() {
         String defaultValue = "x";
-        IGrid<String> grid = new Grid(3, 2);
+        IGrid<String> grid = new Grid(3, 2, defaultValue);
 
         assertEquals("x", grid.get(new Coordinate(0, 0)));
         assertEquals("x", grid.get(new Coordinate(2, 1)));

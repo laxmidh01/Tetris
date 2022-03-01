@@ -4,12 +4,14 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import inf101v22.tetris.view.SampleView;
+import inf101v22.tetris.view.TetrisView;
 
 public class TetrisMain {
     public static final String WINDOW_TITLE = "INF101 Tetris";
 
     public static void main(String[] args) {
-        JComponent view = new SampleView();
+        JComponent view = new TetrisView();
+        //JComponent view = new SampleView();
           
         // The JFrame is the "root" application window.
         // We here set som properties of the main window, 
