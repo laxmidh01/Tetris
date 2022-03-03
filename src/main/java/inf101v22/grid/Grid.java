@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class Grid<E> implements IGrid<E>{
     int row;
     int col;
-    E[][] list;
+    Object[][] list;
     E v;
 
     Coordinate coordinate = new Coordinate(row, col);
@@ -17,10 +17,17 @@ public class Grid<E> implements IGrid<E>{
         this.row = row;
         this.col = col;
         this.v = defaultValue;
+        @SuppressWarnings("unchecked") E[][] array = (E[][]) new Object[row][col];
+        list = array;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                list[i][j] = defaultValue;
+            }
+        }
 
     }
     public Grid(int row, int col) {
-        this(row, col, (E) "x");
+        this(row, col, null);
     }
 
 
@@ -35,47 +42,33 @@ public class Grid<E> implements IGrid<E>{
     }
 
     @Override
-    public void set(Coordinate coordinate, Object value) {
-        if(!coordinateIsOnGrid(coordinate)){
-            throw new IndexOutOfBoundsException("not");
-        }
-        else{
-            get(coordinate);
-        }
-
+    public void set(Coordinate coordinate, E value) {
+       list[coordinate.row][coordinate.col] = value;
     }
 
     @Override
     public E get(Coordinate coordinate) {
-        if(!coordinateIsOnGrid(coordinate)){
-            throw new IndexOutOfBoundsException("not");
-        }
-        return null;
+        return (E) list[coordinate.row][coordinate.col];
     }
 
 
     @Override
     public boolean coordinateIsOnGrid(Coordinate coordinate) {
-        if((row >= 0 || row < getRows()) && (col > 0 || col < getCols())){
+        if((coordinate.row >= 0 && coordinate.row < getRows()) && (coordinate.col >= 0 && coordinate.col < getCols())){
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Coordinate that = (Coordinate) o;
-        return row == that.row && col == that.col;
-    }
-
-    @Override
-    public Iterator iterator() {
-        //ArrayList<CoordinateItem> coordinateItems = new ArrayList<>();
-        Iterator<E> iterator = (Iterator<E>) coordinateItems.iterator();
-        //for(E element : coordinateItems){
-        //}
+    public Iterator<CoordinateItem<E>> iterator() {
+        ArrayList<CoordinateItem<E>> coordinateItems = new ArrayList<>();
+        //Iterator<E> iterator = (Iterator<E>) coordinateItems.iterator();
+        for(int x=0; x < row; x++ ){
+            for(int y=0; y < col; y++){
+                coordinateItems.add(new CoordinateItem<>(new Coordinate(x, y), (E) list[x][y]));
+            }
+        }
 
         return coordinateItems.iterator();
     }

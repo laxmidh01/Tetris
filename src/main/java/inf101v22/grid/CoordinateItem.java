@@ -5,23 +5,22 @@ import java.util.Objects;
 
 public class CoordinateItem<E> implements IGrid{
     public final Coordinate coordinate;
-    public final String item;
-    int row = 4;
-    int col = 2;
+    public final E item;
 
-    public CoordinateItem(Coordinate coordinate, String item) {
+
+    public CoordinateItem(Coordinate coordinate, E item) {
         this.coordinate = coordinate;
         this.item = item;
     }
 
     @Override
     public int getRows() {
-        return row;
+        return coordinate.row;
     }
 
     @Override
     public int getCols() {
-        return col;
+        return coordinate.col;
     }
 
     @Override
@@ -43,35 +42,23 @@ public class CoordinateItem<E> implements IGrid{
         return null;
     }
 
-    // TODO: create this class
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CoordinateItem<E> that = (CoordinateItem<E>) o;
-        CoordinateItem<String> coordinateItem = new CoordinateItem<>(coordinate, item);
-        CoordinateItem<String> coordinateItem1 = new CoordinateItem<>(coordinate, item);
-        if(coordinateItem != coordinateItem1){
-            return false;
-        }
-        //if (row != that.row && col == that.col) return false;
-        //if (row == that.row && col != that.col) return false;
-        //if(coordinateItem.equals(coordinateItem)){
-          //  return false;
-        //}
-        //return true;
-        return (row == that.row && col == that.col);
+        CoordinateItem<?> that = (CoordinateItem<?>) o;
+        return Objects.equals(coordinate, that.coordinate) && Objects.equals(item, that.item);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(row, col);
+        return Objects.hash(coordinate.row, coordinate.col);
     }
 
     @Override
     public String toString() {
         return "{ coordinate='{ " +
-                "row='" + row + "', col='" + col +
+                "row='" + coordinate.row + "', col='" +coordinate.col +
                 "' }', " + "item='" + item +"' }" ;
     }
 }

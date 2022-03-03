@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class Coordinate<E> implements IGrid{
+public class Coordinate implements IGrid{
     public final int row;
     public final int col;
 
     public Coordinate(int row, int col) {
         this.row = row;
         this.col = col;
-
     }
 
 
@@ -63,9 +62,6 @@ public class Coordinate<E> implements IGrid{
 
     @Override
     public String toString() {
-        return "{ " +
-                "row=" + "'" + row + "'" +
-                ", col=" + "'" + col + "'" +
-                " }";
+        return "{ row='" + row + "', col='" + col + "' }";
     }
 }
