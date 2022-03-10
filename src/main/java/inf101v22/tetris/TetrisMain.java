@@ -1,16 +1,18 @@
 package inf101v22.tetris;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-import inf101v22.tetris.view.SampleView;
+import inf101v22.tetris.model.TetrisModel;
 import inf101v22.tetris.view.TetrisView;
 
 public class TetrisMain {
     public static final String WINDOW_TITLE = "INF101 Tetris";
 
     public static void main(String[] args) {
-        JComponent view = new TetrisView();
+        TetrisModel model = new TetrisModel();
+        JComponent view = new TetrisView(model);
+
+        //JComponent view = new TetrisView();
         //JComponent view = new SampleView();
           
         // The JFrame is the "root" application window.
