@@ -19,7 +19,7 @@ public class TetrisModel implements TetrisViewable {
         //this.tetrisBoard.set(new Coordinate(9,0), new Tile(Color.YELLOW, 'c'));
         //this.tetrisBoard.set(new Coordinate(9,14), new Tile(Color.BLUE, 'd'));
         this.positionedPieceFactory = new PositionedPieceFactory();
-        positionedPieceFactory.setCenterColumn(tetrisBoard.getCols()/2);
+        positionedPieceFactory.setCenterColumn(tetrisBoard.getCols());
         positionedPiece = positionedPieceFactory.getNextPositionedPiece();
     }
 

@@ -2,13 +2,14 @@ package inf101v22.tetris.model.piece;
 
 import inf101v22.grid.Coordinate;
 import inf101v22.grid.CoordinateItem;
+import inf101v22.tetris.model.TetrisBoard;
 import inf101v22.tetris.model.Tile;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
-
+    TetrisBoard board;
     Coordinate corner_left;
     PieceShape brick;
 
@@ -25,8 +26,8 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     }
 
     public Coordinate getCoordinate(){
-        int row = getHeight();
-        int col = getWidth();
+        int col = getHeight();
+        int row = getWidth();
         return new Coordinate(row, col);
     }
     public PositionedPiece(PieceShape brick, Coordinate corner_left){
@@ -39,7 +40,7 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         ArrayList<CoordinateItem<Tile>> list = new ArrayList<>();
         for (int row = 0; row < getHeight(); row++) {
             for (int col = 0; col < getWidth(); col++) {
-                Coordinate coordinate = new Coordinate(row, col);
+                Coordinate coordinate = new Coordinate(row + 9/2, col);
                 Tile tile = getTile();
                 if(brick.getShape()[row][col]) {
                     CoordinateItem<Tile> coordinateItem = new CoordinateItem(coordinate, tile);
