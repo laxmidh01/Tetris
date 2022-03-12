@@ -24,12 +24,13 @@ public class PieceShape {
         return tile;
     }
 
-    public boolean[][] getShape() {
+    public boolean[][] getShape(){
         return shape;
     }
 
     static final PieceShape O = new PieceShape(
-            new Tile (Color.RED, '*'),
+            new Tile (Color.RED, 'o'),
+            //O
             new boolean[][]{
                     { true,  true },
                     {  true,  true}
@@ -38,7 +39,7 @@ public class PieceShape {
 
 
     static final PieceShape T = new PieceShape(
-            new Tile(Color.GREEN, '*'),
+            new Tile(Color.GREEN, 't'),
             //T
             new boolean[][] {
                     {  true,  true,  true },
@@ -47,7 +48,7 @@ public class PieceShape {
     );
 
     static final PieceShape S = new PieceShape(
-            new Tile(Color.BLUE, '*'),
+            new Tile(Color.BLUE, 's'),
             // S
             new boolean[][] {
                     { false,  true,  true },
@@ -55,7 +56,7 @@ public class PieceShape {
             }
     );
     static final PieceShape Z = new PieceShape(
-            new Tile(Color.MAGENTA,'*'),
+            new Tile(Color.MAGENTA,'z'),
             // Z
             new boolean[][] {
                     {  true,  true, false },
@@ -63,14 +64,14 @@ public class PieceShape {
             }
     );
     static final PieceShape I = new PieceShape(
-            new Tile(Color.YELLOW, '*'),
+            new Tile(Color.YELLOW, 'i'),
             // I
             new boolean[][] {
                     { true,  true,  true, true }
             }
     );
     static final PieceShape J = new PieceShape(
-            new Tile(Color.cyan, '*'),
+            new Tile(Color.cyan, 'j'),
             // J
             new boolean[][] {
                     { true, false, false },
@@ -78,13 +79,13 @@ public class PieceShape {
             }
     );
     static final PieceShape L = new PieceShape(
-            new Tile(Color.pink, '*'),
+            new Tile(Color.pink, 'l'),
             // L
             new boolean[][] {
                     { false, false,  true },
                     {  true,  true,  true }
             }
     );
-    public static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
+    static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
 
 }

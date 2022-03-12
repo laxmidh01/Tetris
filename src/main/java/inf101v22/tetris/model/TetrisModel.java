@@ -1,12 +1,10 @@
 package inf101v22.tetris.model;
 
-import inf101v22.grid.Coordinate;
 import inf101v22.grid.CoordinateItem;
 import inf101v22.tetris.model.piece.PositionedPiece;
 import inf101v22.tetris.model.piece.PositionedPieceFactory;
 import inf101v22.tetris.view.TetrisViewable;
 
-import java.awt.*;
 
 public class TetrisModel implements TetrisViewable {
 
@@ -23,7 +21,6 @@ public class TetrisModel implements TetrisViewable {
         this.positionedPieceFactory = new PositionedPieceFactory();
         positionedPieceFactory.setCenterColumn(tetrisBoard.getCols()/2);
         positionedPiece = positionedPieceFactory.getNextPositionedPiece();
-
     }
 
 
@@ -53,7 +50,7 @@ public class TetrisModel implements TetrisViewable {
     //}
 
     @Override
-    public Iterable<CoordinateItem<Tile>> pieceIterator() {
+    public Iterable<CoordinateItem<Tile>> pieceIterator(){
         return positionedPiece;
     }
 

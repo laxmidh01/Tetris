@@ -2,7 +2,6 @@ package inf101v22.tetris.model.piece;
 
 import inf101v22.grid.Coordinate;
 import inf101v22.grid.CoordinateItem;
-import inf101v22.tetris.model.TetrisBoard;
 import inf101v22.tetris.model.Tile;
 
 import java.util.ArrayList;
@@ -38,16 +37,17 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
         ArrayList<CoordinateItem<Tile>> list = new ArrayList<>();
-        Coordinate coordinate = this.getCoordinate();
-        for (int row = coordinate.getRows(); row < this.getHeight()+coordinate.getRows(); row++) {
-            for (int col = coordinate.getCols(); col < this.getWidth()+coordinate.getCols(); col++) {
-                Coordinate coordinate1 = new Coordinate(row, col);
-                CoordinateItem<Tile> coordinateItem = new CoordinateItem<>(coordinate1, this.getTile());
-                 list.add(coordinateItem);
+        for (int row = 0; row < getHeight(); row++) {
+            for (int col = 0; col < getWidth(); col++) {
+                Coordinate coordinate = new Coordinate(row, col);
+                Tile tile = getTile();
+                if(brick.getShape()[row][col]) {
+                    CoordinateItem<Tile> coordinateItem = new CoordinateItem(coordinate, tile);
+                    list.add(coordinateItem);
+                }
             }
         }
         return list.iterator();
     }
-
 
 }
