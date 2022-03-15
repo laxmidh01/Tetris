@@ -2,6 +2,8 @@ package inf101v22.tetris;
 
 import javax.swing.*;
 
+import inf101v22.tetris.controller.TetrisControllable;
+import inf101v22.tetris.controller.TetrisController;
 import inf101v22.tetris.model.TetrisModel;
 import inf101v22.tetris.view.TetrisView;
 
@@ -10,7 +12,9 @@ public class TetrisMain {
 
     public static void main(String[] args) {
         TetrisModel model = new TetrisModel();
-        JComponent view = new TetrisView(model);
+        TetrisView view = new TetrisView(model);
+        TetrisController tetrisController = new TetrisController(model,view);
+
 
         //JComponent view = new TetrisView();
         //JComponent view = new SampleView();

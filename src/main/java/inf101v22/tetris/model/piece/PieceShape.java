@@ -5,8 +5,8 @@ import inf101v22.tetris.model.Tile;
 import java.awt.*;
 
 public class PieceShape {
-    boolean[][] shape;
-    Tile tile;
+    private final boolean[][] shape;
+    private final Tile tile;
 
     private PieceShape(Tile tile, boolean[][] shape){
         this.tile = tile;
@@ -88,4 +88,13 @@ public class PieceShape {
     );
     static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
 
+    public PieceShape pieceRotate(){
+        boolean[][] rotatePiece = new boolean[getWidth()][getHeight()];
+        for (int j = 0; j < getHeight(); j++) {
+            for (int i = 0; i < getWidth(); i++) {
+                rotatePiece[i][j] = shape[j][(getWidth()-i)-1];
+            }
+        }
+        return new PieceShape(tile, rotatePiece);
+    }
 }

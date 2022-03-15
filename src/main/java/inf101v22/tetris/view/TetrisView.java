@@ -7,11 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TetrisView extends JComponent{
+    {this.setFocusable(true);}
+
 
     TetrisViewable viewable;
-    CoordinateItem coordinateItem;
-    int l = 3;
-
+    int pad = 2;
+    int border = 5;
     public TetrisView(TetrisViewable viewable) {
         this.viewable = viewable;
     }
@@ -19,7 +20,7 @@ public class TetrisView extends JComponent{
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        drawTetrisBoard(graphics,l,l,this.getWidth(),this.getHeight(), l);
+        drawTetrisBoard(graphics,border,border,this.getWidth()-2*border,this.getHeight()-2*border, pad);
         //drawPieces(graphics,l,l,this.getWidth(),this.getHeight());
         //this.drawFallingPieceWithRightBottomPadding(canvas, 0, 0, this.getWidth(), this.getHeight());
     }
@@ -44,18 +45,18 @@ public class TetrisView extends JComponent{
                 color = tile.color;
             }
             //                                                                           graphics.setColor(Color.cyan);
-            int tileX = xBoard + row * boardWidth / viewable.getRows();
-            int tileY = yBoard + col * boardHeight / viewable.getCols();
+            int X = xBoard + col * boardWidth / viewable.getCols();
+            int Y = yBoard + row * boardHeight/ viewable.getRows();
 
-            int nextTileX = xBoard + (row + 1) * boardWidth / viewable.getRows();
-            int nextTileY = yBoard + (col + 1) * boardHeight / viewable.getCols();
+            int nextX = xBoard + (col + 1) * boardWidth / viewable.getCols();
+            int nextY = yBoard + (row + 1) * boardHeight / viewable.getRows();
 
-            int tileWidth = nextTileX - tileX;
-            int tileHeight = nextTileY - tileY;
+            int bWidth = nextX - X;
+            int bHeight = nextY - Y;
 
             //drawBoardWithRightBottomPadding(graphics, xBoard, yBoard, tileWidth, tileHeight, color, tileiterator);
 
-            this.drawTileWithRightBottomPadding(graphics, tileX, tileY, tileWidth, tileHeight, padding, color);
+            this.drawTileWithRightBottomPadding(graphics, X, Y, bWidth, bHeight, padding, color);
 
             /* if(tile == null){
             drawTileWithRightBottomPadding(graphics, tileX, tileY, tileWidth, tileHeight, padding, Color.BLACK);
@@ -71,8 +72,12 @@ public class TetrisView extends JComponent{
     }
 
     public void drawTetrisBoard(Graphics graphics, int x, int y, int width, int height, int padding){
-        drawBoardWithRightBottomPadding(graphics, x, y, width - padding, height - padding, padding, this.viewable.iterator());
-        drawBoardWithRightBottomPadding(graphics, x, y, width - padding, height - padding, padding, this.viewable.pieceIterator());
+        int nx = x + padding;
+        int ny = y + padding;
+        int nwidth = width - padding;
+        int nheight = height - padding;
+        drawBoardWithRightBottomPadding(graphics, nx, ny, nwidth, nheight, padding, this.viewable.iterator());
+        drawBoardWithRightBottomPadding(graphics, nx, ny, nwidth, nheight, padding, this.viewable.pieceIterator());
         //drawBoardWithRightBottomPadding(graphics, x, y, width - padding, height - padding, padding, this.viewable.pieceIterator());
         //drawTileWithRightBottomPadding(graphics, 15, 15, width/14, height/14, padding, Color.green);
         //drawTileWithRightBottomPadding(graphics, 15, height-23, width/14, height/14, padding, Color.green);
@@ -83,34 +88,13 @@ public class TetrisView extends JComponent{
 
     @Override
     public Dimension getPreferredSize() {
-        int width = (30+l)*viewable.getCols()+l;
-        int height = (60+l)* viewable.getRows()+l;
+        int boardWidth = this.viewable.getCols() * (25 + border) + pad;
+        int boardHeight = this.viewable.getRows() * (25 + border) + pad;
+        //int width = (30+l)*viewable.getCols()+l;
+        int width = boardWidth + pad * 10;
+        //int height = (60+l)* viewable.getRows()+l;
+        int height = boardHeight + pad * 10;
         return new Dimension(width, height);
     }
-
-    public void drawPieces(Graphics graphics, int xPiece, int yPiece, int pieceWidth, int pieceHeight){
-        for (CoordinateItem<Tile> item : viewable.pieceIterator()) {
-            int row = item.coordinate.row;
-            int col = item.coordinate.col;
-
-            Tile piecetile = item.item;
-            Color color = Color.MAGENTA;
-            if (piecetile != null) {
-                color = piecetile.color;
-            }
-
-            int tileX = xPiece + row * pieceWidth / viewable.getRows();
-            int tileY = yPiece + col * pieceHeight / viewable.getCols();
-
-            int nextTileX = xPiece + (row + 1) * pieceWidth / viewable.getRows();
-            int nextTileY = yPiece + (col + 1) * pieceHeight / viewable.getCols();
-
-            int pieceTileWidth = nextTileX - tileX;
-            int tileHeight = nextTileY - tileY;
-
-            this.drawPieces(graphics, tileX, tileY, pieceTileWidth, tileHeight);
-        }
-    }
-
 
 }

@@ -57,8 +57,7 @@ public class CoordinateItem<E> implements IGrid{
 
     @Override
     public String toString() {
-        return "{ coordinate='{ " +
-                "row='" + coordinate.row + "', col='" +coordinate.col +
+        return "{ coordinate='{ row='" + coordinate.row + "', col='" +coordinate.col +
                 "' }', " + "item='" + item +"' }" ;
     }
 }

@@ -4,7 +4,14 @@ import inf101v22.grid.Coordinate;
 import inf101v22.grid.Grid;
 
 public class TetrisBoard extends Grid<Tile> {
-    public TetrisBoard (int rows, int cols, Tile tile) { super(rows, cols, tile);}
+    public TetrisBoard (int rows, int cols, Tile tile) {
+        super(rows, cols, tile);
+    }
+
+    //sjekker om posisjonen er lovlig og at det ikke er brikker i den posisjonen
+    public boolean isPositionValid(Coordinate coordinate){
+        return this.coordinateIsOnGrid(coordinate) && this.get(coordinate) == null;
+    }
 
 
     public TetrisBoard(int rows, int cols) {
@@ -25,17 +32,16 @@ public class TetrisBoard extends Grid<Tile> {
         }
         return resultat;
     }
-        //public char[][] charArray2dToString(){
-        //      char[][] board = new char[this.getRows()][this.getCols()];
+        public String charArray2dToString(){
+            char[][] board = new char[this.getRows()][this.getCols()];
 
-        //    String string = "";
-        //  for (int i = 0; i < board.length; i++) {
-        //    for (int j = 0; j < board[i].length; j++) {
-        //      string += board[i][j];
-        //}
-        //string += "\n";
-        //}
-        //return string;
-        //}
-
+            String string = "";
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    string += board[i][j];
+                    }
+                    string += "\n";
+            }
+            return string;
+    }
 }

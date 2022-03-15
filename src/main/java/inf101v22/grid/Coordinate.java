@@ -3,8 +3,9 @@ package inf101v22.grid;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.Consumer;
 
-public class Coordinate implements IGrid{
+public class Coordinate {
     public final int row;
     public final int col;
 
@@ -12,40 +13,6 @@ public class Coordinate implements IGrid{
         this.row = row;
         this.col = col;
     }
-
-
-    @Override
-    public int getRows() {
-        return row;
-    }
-
-    @Override
-    public int getCols() {
-        return col;
-    }
-
-    @Override
-    public void set(Coordinate coordinate, Object value) {
-
-    }
-
-    @Override
-    public Object get(Coordinate coordinate) {
-        return null;
-    }
-
-    @Override
-    public boolean coordinateIsOnGrid(Coordinate coordinate) {
-        return false;
-    }
-
-
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
-    // TODO: create this class
-
 
     @Override
     public boolean equals(Object o) {
