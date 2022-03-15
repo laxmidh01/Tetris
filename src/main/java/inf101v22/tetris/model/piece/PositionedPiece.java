@@ -27,9 +27,24 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         return new PositionedPiece(this.piece, new Coordinate(this.coordinate.row + deltaRow, this.coordinate.col+ deltaCol));
     }
 
-    public PositionedPiece CopyRotatedPiece(){
-        PieceShape shape;
-        return new PositionedPiece(this.piece, new Coordinate(this.coordinate.row/2, this.coordinate.col/2));
+    public PositionedPiece CopyRotatedPiece(int rotatedRow, int rotatedCol){
+        PieceShape pieceRotate = this.piece.pieceRotate();
+        PositionedPiece rotatedPiece = new PositionedPiece(pieceRotate, getCoordinate());
+
+        int centerColPiece = this.piece.getWidth()/2;
+        for (int row = 0; row < rotatedPiece.getHeight(); row++) {
+            for (int col = 0; col < rotatedPiece.getWidth(); col++) {
+                int OldRow = this.getCoordinate().row;
+                int OldCol = this.getCoordinate().col;
+
+                int newRow = this.piece.getWidth() - OldCol - 1;
+                int newCol = OldRow;
+
+                rotatedPiece.coordinate = new Coordinate(newRow, newCol);
+            }
+
+        }
+        return rotatedPiece;
     }
 
     public int getHeight(){
@@ -103,7 +118,8 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         };
     }
 
-        /**
+
+    /**
         ArrayList<CoordinateItem<Tile>> list = new ArrayList<>();
         for (int row = 0; row < getHeight(); row++) {
             for (int col = 0; col < getWidth(); col++) {

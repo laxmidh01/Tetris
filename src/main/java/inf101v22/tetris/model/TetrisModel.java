@@ -3,6 +3,7 @@ package inf101v22.tetris.model;
 import inf101v22.grid.Coordinate;
 import inf101v22.grid.CoordinateItem;
 import inf101v22.tetris.controller.TetrisControllable;
+import inf101v22.tetris.model.piece.PieceShape;
 import inf101v22.tetris.model.piece.PositionedPiece;
 import inf101v22.tetris.model.piece.PositionedPieceFactory;
 import inf101v22.tetris.view.TetrisViewable;
@@ -21,10 +22,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
 
     public TetrisModel() {
         this.tetrisBoard = new TetrisBoard(15,10);
-        this.tetrisBoard.set(new Coordinate(0,0), new Tile(Color.GREEN, 'a'));
-        this.tetrisBoard.set(new Coordinate(14,0), new Tile(Color.RED, 'b'));
-        this.tetrisBoard.set(new Coordinate(0,9), new Tile(Color.YELLOW, 'c'));
-        this.tetrisBoard.set(new Coordinate(14,9), new Tile(Color.BLUE, 'd'));
+        //this.tetrisBoard.set(new Coordinate(0,0), new Tile(Color.GREEN, 'a'));
+        //this.tetrisBoard.set(new Coordinate(14,0), new Tile(Color.RED, 'b'));
+        //this.tetrisBoard.set(new Coordinate(0,9), new Tile(Color.YELLOW, 'c'));
+        //this.tetrisBoard.set(new Coordinate(14,9), new Tile(Color.BLUE, 'd'));
         this.positionedPieceFactory = new PositionedPieceFactory();
         this.positionedPieceFactory.setCenterColumn(tetrisBoard.getCols());
         this.positionedPiece = positionedPieceFactory.getNextPositionedPiece();
@@ -90,6 +91,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         return this.setPiece(this.positionedPiece.pieceCopy(deltaRow,deltaCol));
     }
 
-
+    @Override
+    public boolean rotatedBrick(int rotatedRow, int rotatedCol) {
+        return this.setPiece(this.positionedPiece.CopyRotatedPiece(rotatedRow, rotatedCol));
+    }
 
 }

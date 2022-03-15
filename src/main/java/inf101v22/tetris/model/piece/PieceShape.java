@@ -3,9 +3,10 @@ package inf101v22.tetris.model.piece;
 import inf101v22.tetris.model.Tile;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class PieceShape {
-    private final boolean[][] shape;
+    private  boolean[][] shape;
     private final Tile tile;
 
     private PieceShape(Tile tile, boolean[][] shape){
@@ -95,6 +96,7 @@ public class PieceShape {
                 rotatePiece[i][j] = shape[j][(getWidth()-i)-1];
             }
         }
+        this.shape = rotatePiece;
         return new PieceShape(tile, rotatePiece);
     }
 }
