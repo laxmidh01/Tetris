@@ -34,7 +34,7 @@ public class CoordinateItem<E> implements IGrid{
 
     @Override
     public boolean coordinateIsOnGrid(Coordinate coordinate) {
-        return false;
+        return true;
     }
 
     @Override

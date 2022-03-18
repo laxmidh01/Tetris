@@ -1,6 +1,7 @@
 package inf101v22.tetris.view;
 
 import inf101v22.grid.CoordinateItem;
+import inf101v22.tetris.model.GameScreen;
 import inf101v22.tetris.model.Tile;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ public class TetrisView extends JComponent{
     TetrisViewable viewable;
     int pad = 2;
     int border = 5;
+    GameScreen gameScreen;
+
     public TetrisView(TetrisViewable viewable) {
         this.viewable = viewable;
     }
@@ -20,12 +23,26 @@ public class TetrisView extends JComponent{
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        drawTetrisBoard(graphics,border,border,this.getWidth()-2*border,this.getHeight()-2*border, pad);
+        drawTetrisBoard(graphics,border,border,getWidth()-2*border,getHeight()-2*border, pad);
+
+        if(gameScreen == GameScreen.GAME_OVER){
+
+            Color transparentColor = new Color(0, 0, 0, 128);;
+            graphics.setColor(transparentColor);
+            graphics.fillRect(500, 500, this.getWidth(), this.getHeight());
+
+
+            graphics.setColor(Color.white);
+            GraphicHelperMethods.drawCenteredString(graphics, "GAME OVER", 0, 0, getWidth()/2, getHeight()/2);
+        }
         //drawPieces(graphics,l,l,this.getWidth(),this.getHeight());
         //this.drawFallingPieceWithRightBottomPadding(canvas, 0, 0, this.getWidth(), this.getHeight());
     }
 
     public void drawTileWithRightBottomPadding(Graphics graphics, int x, int y, int width, int height, int padding, Color color) {
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(x, y, width, height);
+
         graphics.setColor(color);
         graphics.fillRect(x, y, width-padding, height-padding);
     }
@@ -44,7 +61,7 @@ public class TetrisView extends JComponent{
             if (tile != null) {
                 color = tile.color;
             }
-            //                                                                           graphics.setColor(Color.cyan);
+                                                                                    graphics.setColor(Color.cyan);
             int X = xBoard + col * boardWidth / viewable.getCols();
             int Y = yBoard + row * boardHeight/ viewable.getRows();
 
@@ -72,17 +89,16 @@ public class TetrisView extends JComponent{
     }
 
     public void drawTetrisBoard(Graphics graphics, int x, int y, int width, int height, int padding){
-        int nx = x + padding;
-        int ny = y + padding;
-        int nwidth = width - padding;
-        int nheight = height - padding;
-        drawBoardWithRightBottomPadding(graphics, nx, ny, nwidth, nheight, padding, this.viewable.iterator());
-        drawBoardWithRightBottomPadding(graphics, nx, ny, nwidth, nheight, padding, this.viewable.pieceIterator());
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(x, y, width + padding, height + padding);
+        drawBoardWithRightBottomPadding(graphics, x, y, width, height, padding, this.viewable.iterator());
+        drawBoardWithRightBottomPadding(graphics, x, y, width, height, padding, this.viewable.pieceIterator());
         //drawBoardWithRightBottomPadding(graphics, x, y, width - padding, height - padding, padding, this.viewable.pieceIterator());
         //drawTileWithRightBottomPadding(graphics, 15, 15, width/14, height/14, padding, Color.green);
         //drawTileWithRightBottomPadding(graphics, 15, height-23, width/14, height/14, padding, Color.green);
         //drawTileWithRightBottomPadding(graphics, width-216, 15, width/14, height/14, padding, Color.green);
         //drawTileWithRightBottomPadding(graphics, width-216, height-23, width/14, height/14, padding, Color.green);
+
     }
 
 
@@ -96,5 +112,6 @@ public class TetrisView extends JComponent{
         int height = boardHeight + pad * 10;
         return new Dimension(width, height);
     }
+
 
 }

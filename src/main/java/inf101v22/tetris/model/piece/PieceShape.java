@@ -14,20 +14,6 @@ public class PieceShape {
         this.shape = shape;
     }
 
-    public int getWidth() {
-        return shape[0].length;
-    }
-
-    public int getHeight() {
-        return shape.length;
-    }
-    public Tile getTile() {
-        return tile;
-    }
-
-    public boolean[][] getShape(){
-        return shape;
-    }
 
     static final PieceShape O = new PieceShape(
             new Tile (Color.RED, 'o'),
@@ -89,14 +75,30 @@ public class PieceShape {
     );
     static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
 
+
+    public int getWidth() {
+        return shape[0].length;
+    }
+
+    public int getHeight() {
+        return shape.length;
+    }
+    public Tile getTile() {
+        return tile;
+    }
+
+    public boolean[][] getShape(){
+        return shape;
+    }
+
     public PieceShape pieceRotate(){
         boolean[][] rotatePiece = new boolean[getWidth()][getHeight()];
         for (int j = 0; j < getHeight(); j++) {
             for (int i = 0; i < getWidth(); i++) {
-                rotatePiece[i][j] = shape[j][(getWidth()-i)-1];
+                rotatePiece[i][j] = shape[j][getWidth()-i-1];
             }
         }
-        this.shape = rotatePiece;
+        //this.shape = rotatePiece;
         return new PieceShape(tile, rotatePiece);
     }
 }

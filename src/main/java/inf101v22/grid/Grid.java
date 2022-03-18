@@ -68,6 +68,7 @@ public class Grid<E> implements IGrid<E>{
 
     @Override
     public boolean coordinateIsOnGrid(Coordinate coordinate) {
+        //System.out.println("Coord: " + coordinate + ". getRows(): " + getRows() + ". getCols(): " + getCols());
         return (coordinate.row >= 0 && coordinate.row < getRows()) && (coordinate.col >= 0 && coordinate.col < getCols());
     }
 

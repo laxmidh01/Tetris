@@ -37,11 +37,11 @@ public class TetrisController implements KeyListener, ActionListener {
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
             // Up arrow was pressed
-            model.rotatedBrick(0,1);
-            System.out.println("Hei");
+            model.rotatedBrick();
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE){
-
+            //Space was pressed
+            model.dropPiece();
         }
         tetrisView.repaint();
     }
@@ -49,9 +49,6 @@ public class TetrisController implements KeyListener, ActionListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_UP){
-            //Up arrow was pressed
-        }
     }
 
     @Override

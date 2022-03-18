@@ -11,7 +11,7 @@ public class TetrisMain {
     public static final String WINDOW_TITLE = "INF101 Tetris";
 
     public static void main(String[] args) {
-        TetrisModel model = new TetrisModel();
+        TetrisModel model = new TetrisModel(15, 10);
         TetrisView view = new TetrisView(model);
         TetrisController tetrisController = new TetrisController(model,view);
 

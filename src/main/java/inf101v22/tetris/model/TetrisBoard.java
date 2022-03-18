@@ -9,14 +9,17 @@ public class TetrisBoard extends Grid<Tile> {
     }
 
     //sjekker om posisjonen er lovlig og at det ikke er brikker i den posisjonen
+    /*
     public boolean isPositionValid(Coordinate coordinate){
+
         return this.coordinateIsOnGrid(coordinate) && this.get(coordinate) == null;
     }
 
-
-    public TetrisBoard(int rows, int cols) {
+     */
+    public TetrisBoard (int rows, int cols) {
         super(rows, cols);
     }
+
 
     public char[][] toCharArray2d() {
         char[][] resultat = new char[this.getRows()][this.getCols()];

@@ -1,9 +1,8 @@
 package inf101v22.tetris.view;
 
 import inf101v22.grid.CoordinateItem;
+import inf101v22.tetris.model.GameScreen;
 import inf101v22.tetris.model.Tile;
-
-import java.util.Iterator;
 
 public interface TetrisViewable {
     /** @return number of rows */
@@ -15,6 +14,8 @@ public interface TetrisViewable {
     Iterable<CoordinateItem<Tile>> iterator();
 
     Iterable<CoordinateItem<Tile>> pieceIterator();
+
+    GameScreen getGameScreen();
 
 
 
