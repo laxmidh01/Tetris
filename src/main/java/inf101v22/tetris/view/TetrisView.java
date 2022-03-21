@@ -14,7 +14,6 @@ public class TetrisView extends JComponent{
     TetrisViewable viewable;
     int pad = 2;
     int border = 5;
-    GameScreen gameScreen;
 
     public TetrisView(TetrisViewable viewable) {
         this.viewable = viewable;
@@ -25,15 +24,19 @@ public class TetrisView extends JComponent{
         super.paint(graphics);
         drawTetrisBoard(graphics,border,border,getWidth()-2*border,getHeight()-2*border, pad);
 
-        if(gameScreen == GameScreen.GAME_OVER){
-
-            Color transparentColor = new Color(0, 0, 0, 128);;
+        if(viewable.getGameScreen() == GameScreen.GAME_OVER){
+            Color transparentColor = new Color(220, 28, 167, 128);
             graphics.setColor(transparentColor);
-            graphics.fillRect(500, 500, this.getWidth(), this.getHeight());
 
+            graphics.fillRect(0, 0, getWidth(), getHeight());
 
-            graphics.setColor(Color.white);
-            GraphicHelperMethods.drawCenteredString(graphics, "GAME OVER", 0, 0, getWidth()/2, getHeight()/2);
+            graphics.setColor(Color.WHITE);
+
+            Font myFont = new Font("SansSerif", Font.BOLD, 30);
+            graphics.setFont(myFont);
+
+            GraphicHelperMethods.drawCenteredString(graphics, "GAME OVER", 0, 0, getWidth(), getHeight());
+
         }
         //drawPieces(graphics,l,l,this.getWidth(),this.getHeight());
         //this.drawFallingPieceWithRightBottomPadding(canvas, 0, 0, this.getWidth(), this.getHeight());

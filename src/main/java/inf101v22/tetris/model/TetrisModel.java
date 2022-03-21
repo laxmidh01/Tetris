@@ -9,10 +9,10 @@ import inf101v22.tetris.view.TetrisViewable;
 
 public class TetrisModel implements TetrisViewable, TetrisControllable {
 
-    TetrisBoard tetrisBoard;
-    PositionedPiece positionedPiece;
-    PositionedPieceFactory positionedPieceFactory;
-    GameScreen gameScreen = GameScreen.ACTIVE_GAME;
+    private TetrisBoard tetrisBoard;
+    private PositionedPiece positionedPiece;
+    private PositionedPieceFactory positionedPieceFactory;
+    private GameScreen gameScreen = GameScreen.ACTIVE_GAME;
 
 
     public TetrisModel(int row, int col) {
@@ -139,6 +139,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         }
         this.positionedPiece = newFallingPiece;
     }
+
     public void AttachPiece(){
         for (CoordinateItem<Tile> tile: positionedPiece) {
             this.tetrisBoard.set(tile.coordinate, tile.item);
