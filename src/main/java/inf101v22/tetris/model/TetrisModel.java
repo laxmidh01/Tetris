@@ -13,10 +13,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     private PositionedPiece positionedPiece;
     private PositionedPieceFactory positionedPieceFactory;
     private GameScreen gameScreen = GameScreen.ACTIVE_GAME;
-    static int time = 2000;
-    private int pieceCount;
-
-
+    int time = 2000;
+    int pieceCount = 1;
+    int score = 0;
 
 
 
@@ -59,15 +58,6 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         return gameScreen;
     }
 
-    @Override
-    public int timer() {
-        return time;
-    }
-
-    @Override
-    public boolean clockTick() {
-        return false;
-    }
 
     //for loop som kjører gjennom alle rutene på brettet
     //har to if-statements, den første sjekker om brikken er på brettet, hvis ikke returener den false
@@ -117,6 +107,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     //hvis ikke spillet er over og det er lovliog kommer en ny brikke på brettet
     public void newFallingPiece(){
         PositionedPiece newFallingPiece = positionedPieceFactory.getNextPositionedPiece();
+        pieceCount += 1;
         if(!LegalPiece(newFallingPiece)){
             gameScreen = GameScreen.GAME_OVER;
             return;
@@ -129,6 +120,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         for(CoordinateItem<Tile> tile: positionedPiece) {
             this.tetrisBoard.set(tile.coordinate, tile.item);
         }
+        score += tetrisBoard.removeRow();
         newFallingPiece();
     }
 
@@ -139,6 +131,25 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
        }
        AttachPiece();
        tetrisBoard.removeRow();
+    }
+
+    @Override
+    public int getTime() {
+        time = (int) (2000*Math.pow(0.98, pieceCount));
+        return time;
+    }
+
+    @Override
+    public int getScore() {
+        return score;
+    }
+
+    @Override
+    public void clockTick() {
+        if(!moveFallingPiece(1,0)){
+            newFallingPiece();
+        }
+        getTime();
     }
 
 }

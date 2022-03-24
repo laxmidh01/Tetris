@@ -17,6 +17,8 @@ public interface TetrisViewable {
 
     GameScreen getGameScreen();
 
+    int getScore();
+
 
 
 }

@@ -36,6 +36,7 @@ public class TetrisView extends JComponent{
             graphics.setFont(myFont);
 
             GraphicHelperMethods.drawCenteredString(graphics, "GAME OVER", 0, 0, getWidth(), getHeight());
+            GraphicHelperMethods.drawCenteredString(graphics, "Score: " + viewable.getScore(), 0, 0, getWidth(), getHeight() - 100);
 
         }
         //drawPieces(graphics,l,l,this.getWidth(),this.getHeight());

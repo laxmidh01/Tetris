@@ -11,8 +11,8 @@ public interface TetrisControllable {
 
     GameScreen getGameScreen();
 
-    int timer();
+    int getTime();
 
-    boolean clockTick();
+    void clockTick();
 
 }
