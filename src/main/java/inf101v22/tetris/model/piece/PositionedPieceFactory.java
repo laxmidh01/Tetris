@@ -1,6 +1,7 @@
 package inf101v22.tetris.model.piece;
 
 import inf101v22.grid.Coordinate;
+import inf101v22.tetris.controller.TetrisController;
 import inf101v22.tetris.model.TetrisModel;
 
 import java.util.Random;
@@ -11,7 +12,6 @@ public class PositionedPieceFactory {
 
 
     public void setCenterColumn(int col){
-        //this.center = col - getNextPositionedPiece().getWidth()/2;
         this.center = col;
     }
 

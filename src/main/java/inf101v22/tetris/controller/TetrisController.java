@@ -1,5 +1,6 @@
 package inf101v22.tetris.controller;
 
+import inf101v22.tetris.midi.TetrisSong;
 import inf101v22.tetris.view.TetrisView;
 
 import java.awt.event.ActionEvent;
@@ -10,10 +11,13 @@ import java.awt.event.KeyListener;
 public class TetrisController implements KeyListener, ActionListener {
     TetrisControllable model;
     TetrisView tetrisView;
+    TetrisSong tetrisSong = new TetrisSong();
+
     public TetrisController(TetrisControllable model, TetrisView tetrisView){
         this.model = model;
         this.tetrisView = tetrisView;
         this.tetrisView.addKeyListener(this);
+        tetrisSong.run();
     }
 
     @Override
@@ -42,6 +46,7 @@ public class TetrisController implements KeyListener, ActionListener {
         else if (e.getKeyCode() == KeyEvent.VK_SPACE){
             //Space was pressed
             model.dropPiece();
+            //model.getGameScreen();
         }
         tetrisView.repaint();
     }

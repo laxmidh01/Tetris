@@ -16,37 +16,18 @@ public class CharArrayTest {
 
     @Test
     void testCharArray2d() {
-        TetrisBoard board = new TetrisBoard(3,4);
+        TetrisBoard tetrisBoard = new TetrisBoard(3,4);
 
-        board.set(new Coordinate(0,0), new Tile(Color.black, 't'));
+       tetrisBoard.set(new Coordinate(0,0), new Tile(Color.black, 't'));
 
-        char[][] res = board.toCharArray2d();
+        char[][] result = tetrisBoard.toCharArray2d();
         char[][] expected = {
                 {'t','-','-','-'},
                 {'-','-','-','-'},
                 {'-','-','-','-'},
         };
 
-        assertTrue(Arrays.deepEquals(expected,res));
+        assertTrue(Arrays.deepEquals(expected,result));
     }
-
-    @Test
-    void testCharArrayToString() {
-        char[][] source = {
-                {'-','-','-','-'},
-                {'-','-','-','-'},
-                {'-','t','-','-'},
-        };
-
-        String expected = 	"----" +
-                "----" +
-                "-t--";
-
-//		String actual = TetrisBoard.charArray2dToString(source);
-
-    }
-
-
-
 
 }

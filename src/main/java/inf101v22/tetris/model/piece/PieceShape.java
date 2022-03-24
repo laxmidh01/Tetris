@@ -91,14 +91,14 @@ public class PieceShape {
         return shape;
     }
 
+    //roteter brikken vha. to for-løkker
     public PieceShape pieceRotate(){
         boolean[][] rotatePiece = new boolean[getWidth()][getHeight()];
-        for (int j = 0; j < getHeight(); j++) {
-            for (int i = 0; i < getWidth(); i++) {
-                rotatePiece[i][j] = shape[j][getWidth()-i-1];
+        for (int row = 0; row < getHeight(); row++) {
+            for (int col = 0; col < getWidth(); col++) {
+                rotatePiece[col][row] = shape[row][getWidth()-col-1];
             }
         }
-        //this.shape = rotatePiece;
         return new PieceShape(tile, rotatePiece);
     }
 }

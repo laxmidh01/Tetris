@@ -13,6 +13,11 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     private PositionedPiece positionedPiece;
     private PositionedPieceFactory positionedPieceFactory;
     private GameScreen gameScreen = GameScreen.ACTIVE_GAME;
+    static int time = 2000;
+    private int pieceCount;
+
+
+
 
 
     public TetrisModel(int row, int col) {
@@ -54,7 +59,19 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         return gameScreen;
     }
 
+    @Override
+    public int timer() {
+        return time;
+    }
 
+    @Override
+    public boolean clockTick() {
+        return false;
+    }
+
+    //for loop som kjører gjennom alle rutene på brettet
+    //har to if-statements, den første sjekker om brikken er på brettet, hvis ikke returener den false
+    //den andre sjekker om ruten er ledig, at det ikke er en annen brikke/element i ruten, hvis ikke returnerer den false
     boolean LegalPiece(PositionedPiece positionPiece){
         for (CoordinateItem<Tile> tile: positionPiece){
             //tester ut posisjonen til brikken for hver gang den beveger seg
@@ -68,16 +85,8 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         }
         return true;
     }
-/*
-    public boolean setPiece(PositionedPiece positionPiece){
-        if(LegalPiece(positionPiece, this.tetrisBoard)){
-            this.positionedPiece = positionPiece;
-            return true;
-        }
-        return false;
-    }
-*/
 
+    //lar brikken bevege på seg hvis det er lovlig
     @Override
     public boolean moveFallingPiece(int deltaRow, int deltaCol) {
         PositionedPiece myNewCandidate = positionedPiece.pieceCopy(deltaRow,deltaCol);
@@ -89,6 +98,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     }
 
 
+    //roterer brikken hvis det er lovlig
     @Override
     public boolean rotatedBrick() {
         PositionedPiece rotate = positionedPiece.CopyRotatedPiece();
@@ -101,36 +111,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
             return true;
         }
         return false;
-        /*
-        PositionedPiece rotatedPiece = positionedPiece.CopyRotatedPiece();
-        PositionedPiece rotatedPiece = positionedPiece.pieceCopy(rotatedRow, rotatedCol);
-        if(tetrisBoard.coordinateIsOnGrid(new Coordinate(rotatedRow, rotatedCol)));
-
-         */
-       //if(positionedPiece.getHeight() >= tetrisBoard.getRows()) {
-         //   return this.setPiece(this.positionedPiece.CopyRotatedPiece(rotatedRow, rotatedCol));
-             //return false;
-       //}
-
-        //if(LegalPiece(this.positionedPiece, this.tetrisBoard)){
-        //   return this.setPiece(this.positionedPiece.CopyRotatedPiece());
-        //}
-        //for (CoordinateItem<Tile> tile: rotatedPiece) {
-          //  if(!tetrisBoard.coordinateIsOnGrid(tile.coordinate)){
-            //    return false;
-            //}
-            //if(tetrisBoard.get(tile.coordinate) != null){
-              //  return false;
-            //}
-
-        //}
-        //this.positionedPiece = rotatedPiece;
-        //return true;
-
-        //return this.setRotatedPiece(this.positionedPiece.CopyRotatedPiece());
-        //return this.setPiece(this.positionedPiece.pieceCopy());
     }
 
+    //sjekker om spillet er over og om det er lovlig
+    //hvis ikke spillet er over og det er lovliog kommer en ny brikke på brettet
     public void newFallingPiece(){
         PositionedPiece newFallingPiece = positionedPieceFactory.getNextPositionedPiece();
         if(!LegalPiece(newFallingPiece)){
@@ -139,19 +123,22 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
         }
         this.positionedPiece = newFallingPiece;
     }
-
+    //går gjennom alle rutene og passer på at den brikken som blir lagt ned holder seg på brikken
+    //kjører newFallingPiece
     public void AttachPiece(){
-        for (CoordinateItem<Tile> tile: positionedPiece) {
+        for(CoordinateItem<Tile> tile: positionedPiece) {
             this.tetrisBoard.set(tile.coordinate, tile.item);
         }
         newFallingPiece();
     }
 
+    //dropper brikken ned, fjerner fulle rader og kjører AttachPiece
     @Override
     public void dropPiece() {
        while (moveFallingPiece(1,0)){
        }
        AttachPiece();
+       tetrisBoard.removeRow();
     }
 
 }
