@@ -65,7 +65,7 @@ public class TetrisView extends JComponent{
             if (tile != null) {
                 color = tile.color;
             }
-                                                                                    graphics.setColor(Color.cyan);
+            //graphics.setColor(Color.cyan);
             int X = xBoard + col * boardWidth / viewable.getCols();
             int Y = yBoard + row * boardHeight/ viewable.getRows();
 
@@ -75,18 +75,7 @@ public class TetrisView extends JComponent{
             int bWidth = nextX - X;
             int bHeight = nextY - Y;
 
-            //drawBoardWithRightBottomPadding(graphics, xBoard, yBoard, tileWidth, tileHeight, color, tileiterator);
-
             this.drawTileWithRightBottomPadding(graphics, X, Y, bWidth, bHeight, padding, color);
-
-            /* if(tile == null){
-            drawTileWithRightBottomPadding(graphics, tileX, tileY, tileWidth, tileHeight, padding, Color.BLACK);
-            }
-            else{
-              drawTileWithRightBottomPadding(graphics, tileX, tileY, boardWidth, boardHeight, padding, tile.color);
-            }
-            //graphics.fillRect(tileX, tileY+5, tileWidth - 1, tileHeight - 1);
-*/
 
         }
 
@@ -97,11 +86,6 @@ public class TetrisView extends JComponent{
         graphics.fillRect(x, y, width + padding, height + padding);
         drawBoardWithRightBottomPadding(graphics, x, y, width, height, padding, this.viewable.iterator());
         drawBoardWithRightBottomPadding(graphics, x, y, width, height, padding, this.viewable.pieceIterator());
-        //drawBoardWithRightBottomPadding(graphics, x, y, width - padding, height - padding, padding, this.viewable.pieceIterator());
-        //drawTileWithRightBottomPadding(graphics, 15, 15, width/14, height/14, padding, Color.green);
-        //drawTileWithRightBottomPadding(graphics, 15, height-23, width/14, height/14, padding, Color.green);
-        //drawTileWithRightBottomPadding(graphics, width-216, 15, width/14, height/14, padding, Color.green);
-        //drawTileWithRightBottomPadding(graphics, width-216, height-23, width/14, height/14, padding, Color.green);
 
     }
 

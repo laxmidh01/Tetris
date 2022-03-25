@@ -127,15 +127,14 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     //dropper brikken ned, fjerner fulle rader og kjører AttachPiece
     @Override
     public void dropPiece() {
-       while (moveFallingPiece(1,0)){
-       }
+       while (moveFallingPiece(1,0));
        AttachPiece();
        tetrisBoard.removeRow();
     }
 
     @Override
     public int getTime() {
-        time = (int) (2000*Math.pow(0.98, pieceCount));
+        time = (int) (time*Math.pow(0.98, pieceCount));
         return time;
     }
 
@@ -147,7 +146,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     @Override
     public void clockTick() {
         if(!moveFallingPiece(1,0)){
-            newFallingPiece();
+            AttachPiece();
         }
         getTime();
     }

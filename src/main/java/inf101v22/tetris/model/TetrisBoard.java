@@ -3,8 +3,6 @@ package inf101v22.tetris.model;
 import inf101v22.grid.Coordinate;
 import inf101v22.grid.Grid;
 
-import java.awt.*;
-
 public class TetrisBoard extends Grid<Tile> {
     public TetrisBoard (int rows, int cols, Tile tile) {
         super(rows, cols, tile);
@@ -36,10 +34,10 @@ public class TetrisBoard extends Grid<Tile> {
     }
 
     public int removeRow(){
-        //int a = this.getRows() - 1;
+        int a = this.getRows() - 1;
         int b = this.getRows()-1;
         int removedRows = 0;
-        for(int i = this.getRows()-1; i >= 0; i--){
+        for(int i = a; i >= 0; i--){
             while(b >= 0 && !elementIsOnRow(b, null)){
                 b--;
                 removedRows++;
@@ -85,4 +83,5 @@ public class TetrisBoard extends Grid<Tile> {
         }
         return string;
     }
+
 }
