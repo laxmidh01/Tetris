@@ -1,8 +1,6 @@
 package inf101v22.tetris.model.piece;
 
 import inf101v22.grid.Coordinate;
-import inf101v22.tetris.controller.TetrisController;
-import inf101v22.tetris.model.TetrisModel;
 
 import java.util.Random;
 

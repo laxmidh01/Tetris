@@ -7,9 +7,8 @@ import java.util.List;
 public class Grid<E> implements IGrid<E>{
     int row;
     int col;
-    //Object[][] list;
     List<List<E>> board;
-    E v;
+
     public Grid(int row, int col, E defaultValue) {
         this.row = row;
         this.col = col;
@@ -22,19 +21,7 @@ public class Grid<E> implements IGrid<E>{
             this.board.add(rows);
         }
     }
-    /*public Grid(int row, int col, E defaultValue) {
-        this.row = row;
-        this.col = col;
-        this.v = defaultValue;
-        @SuppressWarnings("unchecked") E[][] array = (E[][]) new Object[row][col];
-        list = array;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                list[i][j] = defaultValue;
-            }
-        }
 
-    }*/
     public Grid(int row, int col) {
         this(row, col, null);
     }
@@ -68,14 +55,12 @@ public class Grid<E> implements IGrid<E>{
 
     @Override
     public boolean coordinateIsOnGrid(Coordinate coordinate) {
-        //System.out.println("Coord: " + coordinate + ". getRows(): " + getRows() + ". getCols(): " + getCols());
         return (coordinate.row >= 0 && coordinate.row < getRows()) && (coordinate.col >= 0 && coordinate.col < getCols());
     }
 
     @Override
     public Iterator<CoordinateItem<E>> iterator() {
         List<CoordinateItem<E>> coordinateItems = new ArrayList<>();
-        //Iterator<E> iterator = (Iterator<E>) coordinateItems.iterator();
         for(int x=0; x < row; x++ ){
             for(int y=0; y < col; y++){
                 Coordinate here = new Coordinate(x, y);
