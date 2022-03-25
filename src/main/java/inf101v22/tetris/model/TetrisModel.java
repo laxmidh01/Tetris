@@ -127,7 +127,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
     //dropper brikken ned, fjerner fulle rader og kjører AttachPiece
     @Override
     public void dropPiece() {
-       while (moveFallingPiece(1,0));
+       while(moveFallingPiece(1,0));
        AttachPiece();
        tetrisBoard.removeRow();
     }

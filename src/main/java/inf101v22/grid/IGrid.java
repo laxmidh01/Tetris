@@ -38,5 +38,10 @@ public interface IGrid<E> extends Iterable<CoordinateItem<E>> {
      */
     boolean coordinateIsOnGrid(Coordinate coordinate);
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     boolean equals(Object o);
 }
