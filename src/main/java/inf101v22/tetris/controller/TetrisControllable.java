@@ -18,9 +18,14 @@ public interface TetrisControllable {
      */
     boolean rotatedBrick();
 
-
+    /**
+     * Dropper brikken nedover i brettet
+     */
     void dropPiece();
 
+    /**
+     * @return ACTIVE_GAME eller GAME_OVER
+     */
     GameScreen getGameScreen();
 
     /**
@@ -29,6 +34,11 @@ public interface TetrisControllable {
      */
     int getTime();
 
+    /**
+     * sjekker om det brikken flyttes nedover hvis ja fester vi brikken
+     * ved å kalle på metoden AttachPiece()
+     * også kaller vi på metoden getTime()
+     */
     void clockTick();
 
 }
