@@ -1,5 +1,7 @@
 For å fullføre laben, ber vi deg om å svare på følgende spørsmål. Svar på spørsmålene ved å fylle ut denne filen.
 
+Har jobbet sammen med Safiya, Shania, Maella og Malin.
+
 ## Hva syntes du om denne semesteroppgaven? Har du forslag til hvordan den kan gjøres bedre eller enklere?
 
 <!-- ditt svar her -->
