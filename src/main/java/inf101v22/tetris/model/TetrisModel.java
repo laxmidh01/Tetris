@@ -134,7 +134,12 @@ public class TetrisModel implements TetrisViewable, TetrisControllable {
 
     @Override
     public int getTime() {
-        time = (int) (time*Math.pow(0.98, pieceCount));
+        // Reduce the time linearly based on pieceCount, but don't go below a minimum time limit
+        int minTime = 100; // Minimum time interval in milliseconds (adjust as needed)
+        int initialTime = 2000; // Initial time interval
+        int timeReduction = pieceCount * 20; // Reduce by 20 ms for each fallen piece (adjust as needed)
+
+        time = Math.max(minTime, initialTime - timeReduction);
         return time;
     }
 
